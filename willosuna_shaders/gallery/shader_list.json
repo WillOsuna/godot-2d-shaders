@@ -1,0 +1,66 @@
+{
+ "pack": "Godot 2D Shaders Lite",
+ "tweak_panel": false,
+ "shaders": [
+  {
+   "name": "outline_outer",
+   "title": "Outline (outer)",
+   "category": "Outline & Shape",
+   "about": "Pixel-perfect outline around the opaque pixels, 1 to 8 px, 4-direction (pixel art) or rounded 8-direction. Grows the quad so the line is never cut.",
+   "use": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "scene": "res://willosuna_shaders/demos/outline_outer.tscn",
+   "shader": "outline_outer.gdshader",
+   "still": 1.2
+  },
+  {
+   "name": "hit_flash",
+   "title": "Hit flash",
+   "category": "Combat & Status",
+   "about": "Flashes the sprite to a solid color when it takes damage. Animate flash_amount from 1 to 0 with a Tween.",
+   "use": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "scene": "res://willosuna_shaders/demos/hit_flash.tscn",
+   "shader": "hit_flash.gdshader",
+   "still": 0.93
+  },
+  {
+   "name": "dissolve",
+   "title": "Dissolve with burning edge",
+   "category": "Combat & Status",
+   "about": "Noise dissolve with a two-color glowing edge. Pixel-perfect mode dissolves whole texture pixels. Animate progress 0 to 1.",
+   "use": "Sprite2D, AnimatedSprite2D, TextureRect, UI",
+   "scene": "res://willosuna_shaders/demos/dissolve.tscn",
+   "shader": "dissolve.gdshader",
+   "still": 0.7
+  },
+  {
+   "name": "crt",
+   "title": "CRT monitor",
+   "category": "Screen & Post",
+   "about": "Curved CRT screen with scanlines, RGB phosphor mask, color bleed and dark corners. Put it on a ColorRect on top of the game.",
+   "use": "ColorRect over the screen (or any part of it)",
+   "scene": "res://willosuna_shaders/demos/crt.tscn",
+   "shader": "crt.gdshader",
+   "still": 1.2
+  },
+  {
+   "name": "wind_sway",
+   "title": "Wind sway (grass, trees, plants)",
+   "category": "Environment & Weather",
+   "about": "Bends plants and trees in the wind with a gust on top, base anchored. Pixel snap moves whole pixels per row so pixel art stays crisp. Neighbours desync by world position.",
+   "use": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "scene": "res://willosuna_shaders/demos/wind_sway.tscn",
+   "shader": "wind_sway.gdshader",
+   "still": 1.2
+  },
+  {
+   "name": "rain_overlay",
+   "title": "Rain",
+   "category": "Environment & Weather",
+   "about": "Three depth layers of slanted rain with pixel-width streaks, adjustable angle, density and speed, plus an overcast darkening.",
+   "use": "ColorRect (any size) over the scene",
+   "scene": "res://willosuna_shaders/demos/rain_overlay.tscn",
+   "shader": "rain_overlay.gdshader",
+   "still": 1.2
+  }
+ ]
+}
