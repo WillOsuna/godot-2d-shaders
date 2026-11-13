@@ -1,0 +1,368 @@
+{
+ "pack": "Godot 2D Shaders Lite",
+ "version": "1.0",
+ "godot": "4.3+",
+ "shaders": [
+  {
+   "name": "outline_outer",
+   "title": "Outline (outer)",
+   "category": "Outline & Shape",
+   "file": "shaders/outline_shape/outline_outer.gdshader",
+   "demo": "demos/outline_outer.tscn",
+   "use_on": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "about": "Pixel-perfect outline around the opaque pixels, 1 to 8 px, 4-direction (pixel art) or rounded 8-direction. Grows the quad so the line is never cut.",
+   "uniforms": [
+    {
+     "type": "vec4",
+     "name": "outline_color",
+     "hint": "source_color",
+     "default": "vec4(1.0, 1.0, 1.0, 1.0)",
+     "doc": "Outline color (alpha respected)."
+    },
+    {
+     "type": "int",
+     "name": "width",
+     "hint": "hint_range(0, 8)",
+     "default": "1",
+     "doc": "Thickness in texture pixels."
+    },
+    {
+     "type": "bool",
+     "name": "round_corners",
+     "hint": "",
+     "default": "false",
+     "doc": "Off: 4-direction pixel-art line. On: rounder 8-direction line."
+    },
+    {
+     "type": "bool",
+     "name": "grow_quad",
+     "hint": "",
+     "default": "true",
+     "doc": "Grows the quad so the outline is never cut. Turn off for atlas regions and pad the frames instead."
+    }
+   ]
+  },
+  {
+   "name": "hit_flash",
+   "title": "Hit flash",
+   "category": "Combat & Status",
+   "file": "shaders/combat_status/hit_flash.gdshader",
+   "demo": "demos/hit_flash.tscn",
+   "use_on": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "about": "Flashes the sprite to a solid color when it takes damage. Animate flash_amount from 1 to 0 with a Tween.",
+   "uniforms": [
+    {
+     "type": "vec4",
+     "name": "flash_color",
+     "hint": "source_color",
+     "default": "vec4(1.0, 1.0, 1.0, 1.0)",
+     "doc": "Flash color."
+    },
+    {
+     "type": "float",
+     "name": "flash_amount",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.0",
+     "doc": "0 = normal, 1 = solid color. Tween it 1 -> 0 on hit."
+    },
+    {
+     "type": "bool",
+     "name": "keep_shading",
+     "hint": "",
+     "default": "false",
+     "doc": "On: keeps a hint of the sprite's shading during the flash."
+    }
+   ]
+  },
+  {
+   "name": "dissolve",
+   "title": "Dissolve with burning edge",
+   "category": "Combat & Status",
+   "file": "shaders/combat_status/dissolve.gdshader",
+   "demo": "demos/dissolve.tscn",
+   "use_on": "Sprite2D, AnimatedSprite2D, TextureRect, UI",
+   "about": "Noise dissolve with a two-color glowing edge. Pixel-perfect mode dissolves whole texture pixels. Animate progress 0 to 1.",
+   "uniforms": [
+    {
+     "type": "float",
+     "name": "progress",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.0",
+     "doc": "0 = whole sprite, 1 = fully gone."
+    },
+    {
+     "type": "vec4",
+     "name": "edge_color",
+     "hint": "source_color",
+     "default": "vec4(1.0, 0.45, 0.1, 1.0)",
+     "doc": "Outer edge color."
+    },
+    {
+     "type": "vec4",
+     "name": "edge_color_inner",
+     "hint": "source_color",
+     "default": "vec4(1.0, 0.95, 0.55, 1.0)",
+     "doc": "Hot color right at the cut."
+    },
+    {
+     "type": "float",
+     "name": "edge_width",
+     "hint": "hint_range(0.0, 0.3, 0.005)",
+     "default": "0.08",
+     "doc": "Width of the glowing edge."
+    },
+    {
+     "type": "float",
+     "name": "noise_scale",
+     "hint": "hint_range(1.0, 64.0, 0.5)",
+     "default": "10.0",
+     "doc": "Higher = smaller dissolve blobs."
+    },
+    {
+     "type": "bool",
+     "name": "pixel_perfect",
+     "hint": "",
+     "default": "true",
+     "doc": "Dissolves whole texture pixels (crisp pixel art)."
+    },
+    {
+     "type": "float",
+     "name": "seed",
+     "hint": "hint_range(0.0, 100.0, 0.1)",
+     "default": "0.0",
+     "doc": "Changes the pattern."
+    }
+   ]
+  },
+  {
+   "name": "crt",
+   "title": "CRT monitor",
+   "category": "Screen & Post",
+   "file": "shaders/screen_post/crt.gdshader",
+   "demo": "demos/crt.tscn",
+   "use_on": "ColorRect over the screen (or any part of it)",
+   "about": "Curved CRT screen with scanlines, RGB phosphor mask, color bleed and dark corners. Put it on a ColorRect on top of the game.",
+   "uniforms": [
+    {
+     "type": "sampler2D",
+     "name": "screen_texture",
+     "hint": "hint_screen_texture, filter_linear_mipmap, repeat_disable",
+     "default": "",
+     "doc": ""
+    },
+    {
+     "type": "float",
+     "name": "curvature",
+     "hint": "hint_range(0.0, 0.5, 0.005)",
+     "default": "0.12",
+     "doc": "Barrel curvature of the glass."
+    },
+    {
+     "type": "float",
+     "name": "scanline_strength",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.35",
+     "doc": "Darkness of the scanlines."
+    },
+    {
+     "type": "float",
+     "name": "scanline_size",
+     "hint": "hint_range(1.0, 8.0, 1.0)",
+     "default": "3.0",
+     "doc": "Screen pixels per scanline."
+    },
+    {
+     "type": "float",
+     "name": "mask_strength",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.25",
+     "doc": "RGB phosphor mask."
+    },
+    {
+     "type": "float",
+     "name": "bleed",
+     "hint": "hint_range(0.0, 4.0, 0.05)",
+     "default": "1.0",
+     "doc": "Color bleed in screen pixels."
+    },
+    {
+     "type": "float",
+     "name": "vignette",
+     "hint": "hint_range(0.0, 2.0, 0.01)",
+     "default": "0.6",
+     "doc": "Dark corners."
+    },
+    {
+     "type": "float",
+     "name": "brightness",
+     "hint": "hint_range(0.5, 2.0, 0.01)",
+     "default": "1.15",
+     "doc": "Makes up for the darkening."
+    },
+    {
+     "type": "float",
+     "name": "flicker",
+     "hint": "hint_range(0.0, 0.2, 0.005)",
+     "default": "0.02",
+     "doc": "Subtle brightness flicker."
+    }
+   ]
+  },
+  {
+   "name": "wind_sway",
+   "title": "Wind sway (grass, trees, plants)",
+   "category": "Environment & Weather",
+   "file": "shaders/environment/wind_sway.gdshader",
+   "demo": "demos/wind_sway.tscn",
+   "use_on": "Sprite2D, AnimatedSprite2D, TextureRect",
+   "about": "Bends plants and trees in the wind with a gust on top, base anchored. Pixel snap moves whole pixels per row so pixel art stays crisp. Neighbours desync by world position.",
+   "uniforms": [
+    {
+     "type": "float",
+     "name": "strength",
+     "hint": "hint_range(0.0, 16.0, 0.1)",
+     "default": "3.0",
+     "doc": "Max sway at the top, texture pixels."
+    },
+    {
+     "type": "float",
+     "name": "speed",
+     "hint": "hint_range(0.0, 6.0, 0.05)",
+     "default": "1.5",
+     "doc": "Sway speed."
+    },
+    {
+     "type": "float",
+     "name": "stiffness",
+     "hint": "hint_range(0.5, 4.0, 0.05)",
+     "default": "1.6",
+     "doc": "Higher = only the top moves."
+    },
+    {
+     "type": "float",
+     "name": "gust_strength",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.35",
+     "doc": "Extra slow gust wave."
+    },
+    {
+     "type": "float",
+     "name": "phase_offset",
+     "hint": "hint_range(0.0, 6.283, 0.01)",
+     "default": "0.0",
+     "doc": "Desync copies (also varies with world x)."
+    },
+    {
+     "type": "bool",
+     "name": "pixel_snap",
+     "hint": "",
+     "default": "true",
+     "doc": "Shifts whole texture pixels per row (crisp pixel art)."
+    },
+    {
+     "type": "bool",
+     "name": "anchor_bottom",
+     "hint": "",
+     "default": "true",
+     "doc": "On: the bottom row never moves."
+    }
+   ]
+  },
+  {
+   "name": "rain_overlay",
+   "title": "Rain",
+   "category": "Environment & Weather",
+   "file": "shaders/environment/rain_overlay.gdshader",
+   "demo": "demos/rain_overlay.tscn",
+   "use_on": "ColorRect (any size) over the scene",
+   "about": "Three depth layers of slanted rain with pixel-width streaks, adjustable angle, density and speed, plus an overcast darkening.",
+   "uniforms": [
+    {
+     "type": "vec4",
+     "name": "rain_color",
+     "hint": "source_color",
+     "default": "vec4(0.75, 0.85, 1.0, 0.65)",
+     "doc": "Drop color and opacity."
+    },
+    {
+     "type": "float",
+     "name": "density",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.5",
+     "doc": "Fraction of columns with rain."
+    },
+    {
+     "type": "float",
+     "name": "speed",
+     "hint": "hint_range(0.1, 5.0, 0.05)",
+     "default": "1.6",
+     "doc": "Rect heights per second (near layer)."
+    },
+    {
+     "type": "float",
+     "name": "angle",
+     "hint": "hint_range(-45.0, 45.0, 0.5)",
+     "default": "12.0",
+     "doc": "Slant in degrees."
+    },
+    {
+     "type": "float",
+     "name": "drop_length",
+     "hint": "hint_range(0.01, 0.3, 0.005)",
+     "default": "0.07",
+     "doc": "Streak length (fraction of the rect height)."
+    },
+    {
+     "type": "float",
+     "name": "drop_width",
+     "hint": "hint_range(1.0, 6.0, 1.0)",
+     "default": "1.0",
+     "doc": "Streak width in screen pixels."
+    },
+    {
+     "type": "float",
+     "name": "column_spacing",
+     "hint": "hint_range(2.0, 40.0, 1.0)",
+     "default": "9.0",
+     "doc": "Screen pixels between columns."
+    },
+    {
+     "type": "int",
+     "name": "layers",
+     "hint": "hint_range(1, 3)",
+     "default": "3",
+     "doc": "Depth layers."
+    },
+    {
+     "type": "float",
+     "name": "overcast",
+     "hint": "hint_range(0.0, 1.0, 0.01)",
+     "default": "0.15",
+     "doc": "Darkens the scene."
+    }
+   ]
+  }
+ ],
+ "sample_sprites": [
+  "sprites/apple.png",
+  "sprites/bare_tree.png",
+  "sprites/boss_eye.png",
+  "sprites/bush.png",
+  "sprites/cabin.png",
+  "sprites/card.png",
+  "sprites/crystal.png",
+  "sprites/enemy_fighter.png",
+  "sprites/flag.png",
+  "sprites/forest_day.png",
+  "sprites/forest_night.png",
+  "sprites/hero.png",
+  "sprites/palette_lut.png",
+  "sprites/pine.png",
+  "sprites/pine_snow.png",
+  "sprites/potion.png",
+  "sprites/ship_gunship.png",
+  "sprites/ship_interceptor.png",
+  "sprites/snowman.png"
+ ],
+ "examples": []
+}
