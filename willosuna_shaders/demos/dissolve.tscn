@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Shader" path="res://willosuna_shaders/shaders/combat_status/dissolve.gdshader" id="1_r"]
+[ext_resource type="Script" path="res://willosuna_shaders/gallery/demo_animator.gd" id="2_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/hero.png" id="3_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/boss_eye.png" id="4_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/card.png" id="5_r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1_r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2"]
+shader = ExtResource("1_r")
+shader_parameter/edge_color = Color(0.4784, 0.302, 1, 1)
+shader_parameter/edge_color_inner = Color(0.8784, 0.7843, 1, 1)
+shader_parameter/noise_scale = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3"]
+shader = ExtResource("1_r")
+shader_parameter/edge_color = Color(0.1804, 0.902, 0.6275, 1)
+shader_parameter/edge_color_inner = Color(0.8471, 1, 0.9412, 1)
+shader_parameter/pixel_perfect = false
+shader_parameter/noise_scale = 14.0
+
+[node name="Demo" type="Node2D"]
+
+[node name="Bg" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 570.0
+color = Color(0.08627, 0.07451, 0.1216, 1)
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_top = 440.0
+offset_right = 1280.0
+offset_bottom = 570.0
+color = Color(0.1216, 0.1059, 0.1804, 1)
+
+[node name="V1" type="Sprite2D" parent="." groups=["shd_target"]]
+texture = ExtResource("3_r")
+position = Vector2(213.333, 300)
+scale = Vector2(7, 7)
+material = SubResource("ShaderMaterial_1")
+
+[node name="Anim1" type="Node" parent="V1"]
+script = ExtResource("2_r")
+param = "progress"
+from = 0.0
+to = 1.0
+period = 2.4
+
+[node name="Caption1" type="Label" parent="."]
+text = "fire edge, pixel"
+theme_override_colors/font_color = Color(0.9098, 0.8941, 0.9569, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+offset_left = 5.0
+offset_top = 500.0
+offset_right = 421.667
+offset_bottom = 536.0
+horizontal_alignment = 1
+
+[node name="V2" type="Sprite2D" parent="."]
+texture = ExtResource("4_r")
+position = Vector2(640, 300)
+scale = Vector2(3, 3)
+material = SubResource("ShaderMaterial_2")
+
+[node name="Anim1" type="Node" parent="V2"]
+script = ExtResource("2_r")
+param = "progress"
+from = 0.0
+to = 1.0
+period = 2.4
+
+[node name="Caption2" type="Label" parent="."]
+text = "arcane"
+theme_override_colors/font_color = Color(0.9098, 0.8941, 0.9569, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+offset_left = 431.667
+offset_top = 500.0
+offset_right = 848.333
+offset_bottom = 536.0
+horizontal_alignment = 1
+
+[node name="V3" type="Sprite2D" parent="."]
+texture = ExtResource("5_r")
+position = Vector2(1066.67, 300)
+scale = Vector2(3, 3)
+material = SubResource("ShaderMaterial_3")
+
+[node name="Anim1" type="Node" parent="V3"]
+script = ExtResource("2_r")
+param = "progress"
+from = 0.0
+to = 1.0
+period = 2.4
+
+[node name="Caption3" type="Label" parent="."]
+text = "smooth, toxic"
+theme_override_colors/font_color = Color(0.9098, 0.8941, 0.9569, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+offset_left = 858.333
+offset_top = 500.0
+offset_right = 1275.0
+offset_bottom = 536.0
+horizontal_alignment = 1
+
+[node name="FileName" type="Label" parent="."]
+text = "dissolve.gdshader"
+theme_override_colors/font_color = Color(0.7216, 0.6902, 0.8471, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+offset_left = 16.0
+offset_top = 8.0

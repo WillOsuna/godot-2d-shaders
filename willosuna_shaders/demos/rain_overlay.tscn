@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Shader" path="res://willosuna_shaders/shaders/environment/rain_overlay.gdshader" id="1_r"]
+[ext_resource type="Script" path="res://willosuna_shaders/gallery/demo_animator.gd" id="2_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/forest_night.png" id="3_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/pine_snow.png" id="4_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/cabin.png" id="5_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/hero.png" id="6_r"]
+[ext_resource type="Texture2D" path="res://willosuna_shaders/sprites/pine.png" id="7_r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1_r")
+
+[node name="Demo" type="Node2D"]
+
+[node name="Sky" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 570.0
+color = Color(0.0235, 0.0314, 0.0863, 1)
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+texture = ExtResource("3_r")
+centered = false
+position = Vector2(0, 30)
+scale = Vector2(3, 3)
+region_enabled = true
+region_rect = Rect2(0, 0, 427, 180)
+
+[node name="Prop1" type="Sprite2D" parent="."]
+texture = ExtResource("4_r")
+position = Vector2(160, 440)
+scale = Vector2(4, 4)
+
+[node name="Prop2" type="Sprite2D" parent="."]
+texture = ExtResource("5_r")
+position = Vector2(420, 450)
+scale = Vector2(4, 4)
+
+[node name="Prop3" type="Sprite2D" parent="."]
+texture = ExtResource("6_r")
+position = Vector2(700, 450)
+scale = Vector2(7, 7)
+
+[node name="Prop4" type="Sprite2D" parent="."]
+texture = ExtResource("7_r")
+position = Vector2(980, 470)
+scale = Vector2(5, 5)
+
+[node name="Prop5" type="Sprite2D" parent="."]
+texture = ExtResource("4_r")
+position = Vector2(1180, 440)
+scale = Vector2(4, 4)
+
+[node name="Effect1" type="ColorRect" parent="." groups=["shd_target"]]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 570.0
+color = Color(1, 1, 1, 1)
+mouse_filter = 2
+material = SubResource("ShaderMaterial_1")
+
+[node name="FileName" type="Label" parent="."]
+text = "rain_overlay.gdshader"
+theme_override_colors/font_color = Color(0.7216, 0.6902, 0.8471, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+offset_left = 16.0
+offset_top = 8.0
